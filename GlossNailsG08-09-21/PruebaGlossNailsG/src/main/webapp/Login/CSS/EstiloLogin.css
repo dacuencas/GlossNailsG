@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-image: url("https://www.10wallpaper.com/wallpaper/2560x1600/1505/bracelet_nails_manicure_tenderness-High_Quality_HD_Wallpaper_2560x1600.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container{
+    margin-top: 100px;
+    display: flex;
+    width: 650px;
+    height: auto;
+    background: transparent;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+}
+
+.register, .login{
+    flex: 1;
+}
+
+/* Formulario de Registro */
+
+.register{
+    background: #fff;
+    padding: 40px;
+    position: relative;
+}
+
+.register h2{
+    color: #797979;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.register input{
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    margin-bottom: 25px;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 1px solid #a8a8a8;
+    color: #333;
+}
+
+.register input:active,
+.register input:focus{
+    outline: none;
+}
+
+.register .submit{
+    width: auto;
+    padding: 10px;
+    background: #f17108; 
+    color: #fff;
+    font-size: 12px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .2);
+    cursor: pointer;
+}
+
+.warnings{
+    margin: auto;
+    color: red;
+}
+
+/* Formulario de Inicio de Sesion*/
+
+.login{
+    background-image: linear-gradient(to bottom right, #1ab6b6, #4cac6e);
+    padding: 40px;
+}
+
+.login h2{
+    color: #fff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login label{
+    color: #f1f1f1;
+    text-align: center;
+}
+
+.login input{
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    font-size: 16px;
+    margin-bottom: 25px;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 1px solid #a8a8a8;
+    color: #333;  
+}
+
+.login input:active,
+.login input:focus{
+    outline: none;
+}
+
+.login .submit{
+    width: auto;
+    padding: 10px;
+    background: #f17108; 
+    color: #fff;
+    font-size: 12px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .2);
+    cursor: pointer;
+
+}
+
+/* CheckBox */
+
+.login input[typr=checkbox] + label{
+    display: block;
+    margin: 0.2em;
+    padding: 0.2em;
+    cursor: pointer;
+}
+
+.login input[type=checkbox]{
+    display: none;
+}
+.login input[type=checkbox] + label:before{
+    content: "\2714";
+    border: 0.1em solid #f1f1f1;
+    border-radius: 0.2em;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    padding-bottom: 0.3em; 
+    margin-right: 0.2em;
+    vertical-align: bottom;
+    color: transparent;
+    transition: .2s;
+}
+.login input[type=checkbox] + label:active:before{
+    transform: scale(0);
+}
+.login input[type=checkbox]:checked + label:before{
+    background-color: MediumSeaGreen;
+    border-color: MediumSeaGreen;
+    color: #fff;
+}
+
+@media only screen and (max-width: 540px){
+    .login-container{
+        display: block;
+    }
+
+    .register, .login{
+        flex: none;
+    }
+
+    .register::after{
+        top: unset;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%) rotate(90deg);
+    }
+}

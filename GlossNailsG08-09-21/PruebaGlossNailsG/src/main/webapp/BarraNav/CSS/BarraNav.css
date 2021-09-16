@@ -1,0 +1,78 @@
+
+/* navbar */
+
+.navbar .container{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+        
+    
+}
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent !important;
+    color: green !important;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white !important;
+}
+
+.navbar .navbar-toggler {
+    background-color: white;
+}
+
+.navbar .log {
+    color: #ffe25b !important;
+}
+
+.navbar ul li .search {
+    position: relative
+}
+
+.navbar ul form {
+    position: absolute;
+    width: 250px;
+    padding: 5px;
+    background-color: white;
+    right: -30px;
+    display: none;
+}
+
+.navbar ul form input {
+    padding: 5px 10px 5px 5px;
+    background-color: #DDD;
+    width: 100%;
+    border: 1px solid #737272;
+}
+
+@media (max-width: 1200px) {
+    
+}
+
+@media (max-width: 992px) {
+
+    /* navbar */
+    
+    .navbar ul {
+        background-color: white;
+        padding: 10px 20px;
+    }
+    .navbar ul li a {
+        color: black !important;
+    }
+    .navbar ul li a:hover {
+        color: #ffe25b !important;
+    }
+    .navbar ul form {
+        position: static;
+        width: 100%;
+    }
+
+}    

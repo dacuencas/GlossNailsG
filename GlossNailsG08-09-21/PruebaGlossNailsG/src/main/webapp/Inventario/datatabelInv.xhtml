@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Usuarios</title>
+        <link href="../BarraNav/CSS/Prueba/barraprueba.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+
+        <p:growl id="msn"/>
+        <h:form id="nuevo">
+            <p:fieldset legend="Nuevo" toggleable="true">
+                <p:panelGrid columns="1">
+                    <p:commandButton value="Nuevo" oncomplete="PF('valor').show();"/>
+                </p:panelGrid>
+            </p:fieldset>
+        </h:form>
+
+        <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="Nuevo Usuario" resizable="false">
+            <p:ajax event="close"  listener="#{usuarioscontroller.limpiarDatos()}" update=":usuarioForm"/>
+            <h:form id="usuarioForm">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="NOMBRE"/>
+                    <p:inputText value="#{usuarioscontroller.usuarioreg.nombre}"/>
+                    <p:outputLabel value="APELLIDO"/>
+                    <p:inputText value="#{usuarioscontroller.usuarioreg.apellidos}"/>
+                    <p:outputLabel value="CORREO ELECTRONICO"/>
+                    <p:inputText value="#{usuarioscontroller.usuarioreg.correoElectronico}"/>
+                    <p:outputLabel value="CONTRASEÑA"/>
+                    <p:inputText value="#{usuarioscontroller.usuarioreg.contrasena}"/>
+                    <p:outputLabel value="ROL"/>
+                    <p:inputText value="#{usuarioscontroller.usuarioreg.roll}"/>
+                    <p:commandButton value="GUARDAR" actionListener="#{usuarioscontroller.guardar()}" oncomplete="PF('valor').hide();" update=":Datos_de_Usuarios usuarioForm :msn"/>
+                    <p:commandButton value="EDITAR" actionListener="#{usuarioscontroller.editar()}" oncomplete="PF('valor').hide();" update=":Datos_de_Usuarios usuarioForm :msn"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <h:form id="Datos_de_Usuarios">
+            <p:fieldset legend="Datos de Usuarios" toggleable="true">
+                <div style="display: inline-block; align-content: space-between ">
+                    <h:commandLink>
+                        <h:graphicImage url="../resources/img/excel.png" width="40" height="40" style="border-radius: 100%" />
+                        <p:dataExporter type="xls" target="tabla1" fileName="DatosUsuarioExcel"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <h:graphicImage url="../resources/img/pdf.png" width="40" height="40" style="border-radius: 100%"/>
+                        <p:dataExporter type="pdf" target="tabla1" fileName="DatosUsuarioPdf"/>
+                    </h:commandLink>
+                </div>
+                <p:dataTable id="tabla1" value="#{usuarioscontroller.listaUsuarios}" var="u" editable="true">
+                   
+                    
+                    <p:column headerText="ID USUARIO">
+                        <h:outputText value="#{u.idUsuarios}"/>
+                    </p:column>
+                    <p:column headerText="NOMBRE">
+                        <h:outputText value="#{u.nombre}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="APELLIDO">
+                        <h:outputText value="#{u.apellidos}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="CORREO ELECTRÓNICO">
+                        <h:outputText value="#{u.correoElectronico}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="CONTRASEÑA">
+                        <h:outputText value="#{u.contrasena}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="ROL">
+                        <h:outputText value="#{u.roll}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="ELIMINAR" exportable="false">
+                        <p:commandButton actionListener="#{usuarioscontroller.eliminar(u)}" update=":Datos_de_Usuarios :msn" value="ELIMINAR"/>
+                    </p:column>
+                    <p:column headerText="EDITAR" exportable="false">
+                        <p:commandButton actionListener="#{usuarioscontroller.cargarDatos(u)}" oncomplete="PF('valor').show();" update=":usuarioForm" value="EDITAR"/>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+        </h:form>
+
+    </h:body>
+</html>

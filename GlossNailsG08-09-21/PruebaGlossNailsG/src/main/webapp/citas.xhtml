@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>.
+
+        <title>Agendamiento de Citas</title>
+
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+        <link href="Citas/CSS/style.css" rel="stylesheet" type="text/css"/>
+        <link href="Citas/CSS/wickedpicker.css" rel="stylesheet" type="text/css"/>
+        <link href="BarraNav/CSS/Prueba/barraprueba.css" rel="stylesheet" type="text/css"/>
+
+    </h:head>
+    <h:body>
+
+        <!--Barra de Navegacion-->
+
+        <div class="header">
+            <section class="wrapper">
+                <nav>
+                    <ul>
+                        <li><a href="index.xhtml">Inicio</a></li>
+                        
+                        <li><a href="#about">Quienes Somos</a></li>
+                        <li><a href="#service">Servicios</a></li>
+                        <li><a href="#test">Sobre Nosotros</a></li>
+                        <li><a href="#contact">Contactanos</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+
+        <!--background-->
+        <div class="bg-agile">
+            <div class="book-appointment">
+                <h2>Agenda tu Cita</h2>
+
+                <h:form >
+                    <h:column>
+                        <div id="resultados_ajax" class="gaps"></div>
+                        <div class="left-agileits-w3layouts same">
+                            <img src="Citas/Gloss Nail G..jpg"/>
+                        </div>
+
+                        <div class="right-agileinfo same">
+
+                            <div class="gaps">
+
+                                <h:panelGrid columns="1">
+                                    <p:outputLabel value="Seleccionar Manicurista"/>
+                                    <br/>
+                                    <h:selectOneMenu value="">
+                                        <f:selectItem itemValue="Manicurista 1" itemLabel="Manicurista 1"/>
+                                        <f:selectItem itemValue="Manicurista 2" itemLabel="Manicurista 2"/>
+                                        <f:selectItem itemValue="Manicurista 3" itemLabel="Manicurista 3"/>
+                                    </h:selectOneMenu>
+                                    <br/>
+                                    <p:outputLabel value="Tipo de Servicio"/>
+                                    <br/>                                    
+                                    <h:selectOneMenu>
+                                        <f:selectItem itemValue="Manicura" itemLabel="Manicura"/>
+                                        <f:selectItem itemValue="Pedicura" itemLabel="Pedicua"/>
+                                        <f:selectItem itemValue="D. Uñas" itemLabel="Decoracion de Uñas"/>
+                                    </h:selectOneMenu>
+                                    <br/>
+                                    <p:outputLabel value="Seleccionar Fecha"/>
+                                    <br/>
+                                    <p:calendar/>
+                                    <br/>
+                                    <p:outputLabel value="Horas Disponibles"/>
+                                    <br/>
+                                    <h:selectOneMenu>
+                                        <f:selectItem itemValue="" itemLabel="8:00 - 9:00 AM"/>
+                                        <f:selectItem itemValue="" itemLabel="9:00 - 10:00 AM"/>
+                                        <f:selectItem itemValue="" itemLabel="10:00 - 11:00 AM"/>
+                                        <f:selectItem itemValue="" itemLabel="11:00 - 12:00 AM"/>
+                                        <f:selectItem itemValue="" itemLabel="1:00 - 2:00 PM"/>
+                                        <f:selectItem itemValue="" itemLabel="3:00 - 4:00 PM"/>
+                                        <f:selectItem itemValue="" itemLabel="4:00 - 5:00 PM"/>
+                                        <f:selectItem itemValue="" itemLabel="5:00 - 6:00 PM"/>
+                                        
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                            </div>
+                        </div>
+                        
+                        <div class="clear"></div>
+                        
+                        <p:commandButton value="Realizar cita" />
+                    </h:column>
+                </h:form>
+            </div>
+        </div>
+        
+        <!--copyright-->
+        <div class="copy w3ls">
+            <p><a href="#" target="_blank"></a> </p>
+        </div>
+        <!--//copyright-->
+        <script type="text/javascript" src="Citas/JS/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="Citas/JS/wickedpicker.js"></script>
+        <script type="text/javascript">
+            $('.timepicker').wickedpicker({twentyFour: false});
+        </script>
+        <!-- Calendar -->
+        <link rel="stylesheet" href="Citas/CSS/jquery-ui.css" />
+        <script src="Citas/JS/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
+            });
+
+        </script>
+        <!-- //Calendar -->
+        <script>
+            $("#appointment").submit(function (event) {
+                var parametros = $(this).serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "enviar-mail.php",
+                    data: parametros,
+                    beforeSend: function (objeto) {
+                        $("#resultados_ajax").html("");
+                    },
+                    success: function (datos) {
+                        $("#resultados_ajax").html(datos);
+                    }
+                });
+
+                event.preventDefault();
+            });
+        </script>
+
+    </h:body>
+</html>
